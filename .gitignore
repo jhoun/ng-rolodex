@@ -39,3 +39,4 @@ testem.log
 Thumbs.db
 
 #knex config file
+config.json
