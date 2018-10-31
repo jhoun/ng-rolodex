@@ -1,4 +1,4 @@
-const bookshelf = require('./booshelf.js');
+const bookshelf = require('./bookshelf.js');
 
 const Users = bookshelf.Model.extend({
   tableName: 'users',

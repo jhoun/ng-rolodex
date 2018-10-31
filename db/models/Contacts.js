@@ -1,6 +1,6 @@
 const bookshelf = require('./bookshelf.js')
 
-const Contacts = contacts.Model.extend({
+const Contacts = bookshelf.Model.extend({
   tableName: 'contacts',
   idAttribute: 'contact_id',
   hasTimestamps: true
