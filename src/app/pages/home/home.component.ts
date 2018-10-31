@@ -16,9 +16,24 @@ export class HomeComponent implements OnInit {
     class: ''
   };
 
+  validName: boolean = false;
+
   constructor() {}
 
   ngOnInit() {}
+
+  validateName() {
+    console.log('validateName');
+    if (!this.formData.username) {
+      this.validName = false;
+    } 
+    else if (this.formData.username.length < 3) {
+      this.validName = false;
+    } 
+    else {
+      this.validName = true;
+    }
+  }
 
   submit() {
     console.log('formData: ', this.formData);

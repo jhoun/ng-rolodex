@@ -5,10 +5,10 @@
 
 <form>
   <div>Username</div>
-  <input type="text" name='name' [(ngModel)]="formData.name">
+  <input type="text" name='username' [(ngModel)]="formData.username" (keyup)="validateName()">
   <br />
   <div>Password:</div>
-  <input type="text" name='email' [(ngModel)]="formData.email">
+  <input type="text" name='password' [(ngModel)]="formData.password">
 </form>
 <!-- 
 <div [class]='formData.name ='></div> -->
@@ -16,4 +16,4 @@
 {{formData.email}}
 
 <br>
-<button (click)="submit()" [class]='formData.class'>Submit</button>
+<button (click)="submit()" [class]='formData.class' [disabled]="!validName">Submit</button>
