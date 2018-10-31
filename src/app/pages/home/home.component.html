@@ -1,3 +1,19 @@
 <p>
   home works!
 </p>
+{{title}}
+
+<form>
+  <div>Username</div>
+  <input type="text" name='name' [(ngModel)]="formData.name">
+  <br />
+  <div>Password:</div>
+  <input type="text" name='email' [(ngModel)]="formData.email">
+</form>
+<!-- 
+<div [class]='formData.name ='></div> -->
+
+{{formData.email}}
+
+<br>
+<button (click)="submit()" [class]='formData.class'>Submit</button>

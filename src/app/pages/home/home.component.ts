@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  formData: {
+    username: string;
+    password: string;
+    class: string;
+  } = {
+    username: '',
+    password: '',
+    class: ''
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  submit() {
+    console.log('formData: ', this.formData);
   }
-
 }
