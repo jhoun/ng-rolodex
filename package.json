@@ -20,7 +20,13 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "body-parser": "^1.18.3",
+    "bookshelf": "^0.13.3",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
+    "knex": "^0.15.2",
+    "pg": "^7.6.0",
+    "pg-hstore": "^2.3.2",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
