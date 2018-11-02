@@ -14,7 +14,8 @@ import { ProfileViewComponent } from './pages/profile-view/profile-view.componen
 import { LogoutComponent } from './pages/logout/logout.component';
 
 // Services
-import { BackendService } from './services/backend.service'
+import { BackendService } from './services/backend.service';
+import { SessionService } from './services/session.service';
 // import { AuthService } from './services/auth.service';
 
 @NgModule({
@@ -39,7 +40,10 @@ import { BackendService } from './services/backend.service'
       { path: 'logout', component: LogoutComponent }
     ])
   ],
-  providers: [BackendService],
+  providers: [
+    BackendService,
+    SessionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
