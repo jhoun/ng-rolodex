@@ -8,8 +8,6 @@ import { BackendService } from  '../../services/backend.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  subtitle: string;
-  characters: any [] = [];
 
   formData: {
     username: string;
@@ -25,18 +23,10 @@ export class HomeComponent implements OnInit {
   validPassword: boolean = false;
 
   constructor(private backend: BackendService) {
-    const subtitle: string = 'This is really awesome';
-    this.subtitle = subtitle;
+
   }
 
   ngOnInit() {
-    this.characters = this.backend.characters;
-    // this.backend.addCharacter({name: 'jay'});
-
-    this.backend.getCharacter(1).then(data => {
-      console.log('data', data)
-    })
-    console.log(this.characters)
   }
 
   validateName() {

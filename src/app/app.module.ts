@@ -16,7 +16,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
 // Services
 import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
-// import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { SessionService } from './services/session.service';
   ],
   providers: [
     BackendService,
-    SessionService
+    SessionService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
