@@ -17,3 +17,7 @@
 
 <br>
 <button (click)="submit()" class='btn-submit' [disabled]="isDisabled() ">Submit</button>
+
+<div *ngFor="let char of characters">
+  {{char.name}}
+</div>
