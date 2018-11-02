@@ -8,12 +8,12 @@
   <input type="text" name='username' [(ngModel)]="formData.username" (keyup)="validateName()">
   <br />
   <div>Password:</div>
-  <input type="text" name='password' [(ngModel)]="formData.password">
+  <input type="text" name='password' [(ngModel)]="formData.password" (keyup)="validatePassword()">
 </form>
-<!-- 
-<div [class]='formData.name ='></div> -->
+
+
 
 {{formData.email}}
 
 <br>
-<button (click)="submit()" [class]='formData.class' [disabled]="!validName">Submit</button>
+<button (click)="submit()" class='btn-submit' [disabled]="isDisabled() ">Submit</button>

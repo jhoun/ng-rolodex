@@ -17,13 +17,13 @@ export class HomeComponent implements OnInit {
   };
 
   validName: boolean = false;
+  validPassword: boolean = false;
 
   constructor() {}
 
   ngOnInit() {}
 
   validateName() {
-    console.log('validateName');
     if (!this.formData.username) {
       this.validName = false;
     } 
@@ -33,6 +33,22 @@ export class HomeComponent implements OnInit {
     else {
       this.validName = true;
     }
+  }
+
+  validatePassword(){
+    if(!this.formData.password){
+       this.validPassword = false;
+    } 
+    else if (this.formData.password.length < 3) {
+      this.validPassword = false;
+    } 
+    else {
+      this.validPassword = true;
+    }
+  }
+  
+  isDisabled(){
+    return !this.validName || !this.validPassword
   }
 
   submit() {

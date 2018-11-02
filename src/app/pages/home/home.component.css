@@ -1,0 +1,15 @@
+.btn-submit {
+    border: 0;
+    padding: 15px;
+    width: 250px;
+    font-size: 16px;
+    color: white;
+    background-color: blue;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #eee;
+    transition: background-color 0.5s ease-out;
+}
+
+.btn-submit:disabled{
+    background-color: #ddd;
+}
