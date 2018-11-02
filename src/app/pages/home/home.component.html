@@ -1,23 +1,13 @@
-<p>
-  home works!
-</p>
-{{title}}
 
-<form>
-  <div>Username</div>
-  <input type="text" name='username' [(ngModel)]="formData.username" (keyup)="validateName()">
-  <br />
-  <div>Password:</div>
-  <input type="text" name='password' [(ngModel)]="formData.password" (keyup)="validatePassword()">
-</form>
+<div class="login-container">
+  <form>
+    <input type="text" name="username" placeholder="username" [(ngModel)]="loginFormData.username" (keyup)="validateName()">
 
+    <input type="text" name="password" placeholder="password" [(ngModel)]="loginFormData.password" (keyup)="validatePassword()">
 
+    <button (click)="login()" class='btn' [disabled]="isDisabled() ">Submit</button>
 
-{{formData.email}}
-
-<br>
-<button (click)="submit()" class='btn-submit' [disabled]="isDisabled() ">Submit</button>
-
-<div *ngFor="let char of characters">
-  {{char.name}}
+    {{ loginFormData | json}}
+  </form>
 </div>
+

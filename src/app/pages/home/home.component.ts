@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from  '../../services/backend.service'
+import { AuthService } from '../../services/auth.service'
 
 
 @Component({
@@ -9,31 +9,37 @@ import { BackendService } from  '../../services/backend.service'
 })
 export class HomeComponent implements OnInit {
 
-  formData: {
+  loginFormData: {
     username: string;
     password: string;
-    class: string;
   } = {
     username: '',
-    password: '',
-    class: ''
+    password: ''
   };
 
   validName: boolean = false;
   validPassword: boolean = false;
 
-  constructor(private backend: BackendService) {
+  constructor(private auth: AuthService) {}
 
+  login() {
+    this.auth.login(this.loginFormData)
+    .then(() => {
+      console.log('User logged In');
+    })
+    .catch((err) => {
+      console.log('err');
+    })
   }
 
   ngOnInit() {
   }
 
   validateName() {
-    if (!this.formData.username) {
+    if (!this.loginFormData.username) {
       this.validName = false;
     }
-    else if (this.formData.username.length < 3) {
+    else if (this.loginFormData.username.length < 3) {
       this.validName = false;
     }
     else {
@@ -42,10 +48,10 @@ export class HomeComponent implements OnInit {
   }
 
   validatePassword(){
-    if(!this.formData.password){
+    if(!this.loginFormData.password){
        this.validPassword = false;
     }
-    else if (this.formData.password.length < 3) {
+    else if (this.loginFormData.password.length < 3) {
       this.validPassword = false;
     }
     else {
@@ -55,9 +61,5 @@ export class HomeComponent implements OnInit {
 
   isDisabled(){
     return !this.validName || !this.validPassword
-  }
-
-  submit() {
-    console.log('formData: ', this.formData);
   }
 }

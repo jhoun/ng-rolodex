@@ -14,7 +14,7 @@ export class BackendService {
   }
 
   login(data){
-    return Promise.resolve({})
+    return Promise.resolve({ username: data.username })
   }
 
   logout(){

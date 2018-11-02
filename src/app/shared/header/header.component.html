@@ -1,17 +1,30 @@
-<ul>
-  <li>
-    <a routerLink="/">Home</a>
-  </li>
-  <li>
-    <a routerLink="/create">Create Contacts</a>
-  </li>
-  <li>
-    <a routerLink="/all">View All Contacts</a>
-  </li>
-  <li>
-    <a routerLink="/profile">My Profile</a>
-  </li>
-  <li>
-    <a routerLink="/logout">Logout</a>
-  </li>
-</ul>
+<div class="header-container">
+  <div class="header-left">
+
+  </div>
+
+  <div class="header-right">
+    <div class="logged-in" *ngIf="isLoggedIn()">
+      Welcome, {{ user.username }}
+      <ul>
+        <li>
+          <a routerLink="/">Home</a>
+        </li>
+        <li>
+          <a routerLink="/create">Create Contacts</a>
+        </li>
+        <li>
+          <a routerLink="/all">View All Contacts</a>
+        </li>
+        <li>
+          <a routerLink="/profile">My Profile</a>
+        </li>
+        <li>
+          <a routerLink="/logout">Logout</a>
+        </li>
+      </ul>
+      <button (click)="logout()"> Log Out</button>
+    </div>
+  </div>
+</div>
+
