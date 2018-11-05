@@ -11,7 +11,7 @@
 
     <input type="text" name="address" placeholder="address" [(ngModel)]="registerFormData.address" (keyup)="validateNewUserData('address')">
 
-    <button (click)="login()" class='btn' [disabled]="isDisabled()" >Submit</button>
+    <button (click)="register()" class='btn' [disabled]="isDisabled()" >Submit</button>
 
     {{ loginFormData | json}}
   </form>
