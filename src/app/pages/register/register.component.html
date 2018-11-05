@@ -7,6 +7,8 @@
 
     <input type="text" name="name" placeholder="name" [(ngModel)]="registerFormData.name" (keyup)="validateNewUserData('name')">
 
+    <input type="text" name="email" placeholder="email" [(ngModel)]="registerFormData.email" (keyup)="validateEmail()">
+
     <input type="text" name="address" placeholder="address" [(ngModel)]="registerFormData.address" (keyup)="validateNewUserData('address')">
 
     <button (click)="login()" class='btn' [disabled]="isDisabled()" >Submit</button>

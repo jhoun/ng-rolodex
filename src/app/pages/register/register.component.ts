@@ -23,6 +23,9 @@ export class RegisterComponent implements OnInit {
 
   validUsername: boolean = false;
   validPassword: boolean = false;
+  validName: boolean = false;
+  validEmail: boolean = false;
+  validAddress: boolean = false;
 
   constructor() { }
 
@@ -47,20 +50,23 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // validateEmail() {
-  //   if (!this.registerFormData.email) {
-  //     this.validName = false;
-  //   }
-  //   else if (this.registerFormData.username.length < 3) {
-  //     this.validName = false;
-  //   }
-  //   else {
-  //     this.validName = true;
-  //   }
-  // }
+  validateEmail() {
+    if (!this.registerFormData.email) {
+      this.validEmail = false;
+    }
+    else if (this.registerFormData.email.length < 3) {
+      this.validEmail = false;
+    }
+    else if (!this.registerFormData.email.includes('@')){
+      this.validEmail = false;
+    }
+    else {
+      this.validEmail = true;
+    }
+  }
 
    isDisabled(){
-    return !this.validUsername || !this.validPassword;
+    return !this.validUsername || !this.validPassword || !this.validName || !this.validEmail || !this.validAddress ;
   }
 
 }
