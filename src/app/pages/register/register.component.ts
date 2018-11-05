@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
     address: ''
   }
 
-  validNewUserData: boolean = false;
+  validUsername: boolean = false;
+  validPassword: boolean = false;
 
   constructor() { }
 
@@ -34,14 +35,15 @@ export class RegisterComponent implements OnInit {
   }
 
   validateNewUserData(input) {
+    const uppercasedInput = input.charAt(0).toUpperCase() + input.slice(1);
     if (!this.registerFormData[input]) {
-      this.validNewUserData = false;
+      this[`valid${uppercasedInput}`]= false;
     }
     else if (this.registerFormData[input].length < 3) {
-      this.validNewUserData = false;
+      this[`valid${uppercasedInput}`] = false;
     }
     else {
-      this.validNewUserData = true;
+      this[`valid${uppercasedInput}`] = true;
     }
   }
 
@@ -58,7 +60,7 @@ export class RegisterComponent implements OnInit {
   // }
 
    isDisabled(){
-    return !this.validNewUserData;
+    return !this.validUsername || !this.validPassword;
   }
 
 }

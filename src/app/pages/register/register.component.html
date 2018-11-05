@@ -3,6 +3,12 @@
   <form>
     <input type="text" name="username" placeholder="username" [(ngModel)]="registerFormData.username" (keyup)="validateNewUserData('username')">
 
+    <input type="text" name="password" placeholder="password" [(ngModel)]="registerFormData.password" (keyup)="validateNewUserData('password')">
+
+    <input type="text" name="name" placeholder="name" [(ngModel)]="registerFormData.name" (keyup)="validateNewUserData('name')">
+
+    <input type="text" name="address" placeholder="address" [(ngModel)]="registerFormData.address" (keyup)="validateNewUserData('address')">
+
     <button (click)="login()" class='btn' [disabled]="isDisabled()" >Submit</button>
 
     {{ loginFormData | json}}
