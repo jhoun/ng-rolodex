@@ -1,5 +1,5 @@
 // Update with your config settings.
-const CONFIG = require('./config.json')
+const { DATABASE } = require('./config.json')
 
 module.exports = {
 
@@ -7,9 +7,9 @@ module.exports = {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      user: CONFIG.USERNAME,
-      password: CONFIG.PASSWORD,
-      database: CONFIG.DATABASE,
+      user: DATABASE.USERNAME,
+      password: DATABASE.PASSWORD,
+      database: DATABASE.DATABASE,
       charset: 'utf8'
     },
     migrations: {
