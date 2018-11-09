@@ -37,15 +37,20 @@ router.route('/users')
       })
   })
 
-router.route('/login')
-  .post(passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/register'
-  }),
-  function(req, res) {
-    res.send('authenticated');
-  }
-)
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      console.log('err.message', err.message);
+    }
+    req.logIn(user, function(err) {
+      console.log('req.user', req.isAuthenticated());
+      if (err) {
+        console.log('err.message', err.message);
+      }
+      return res.redirect('/users/' + user.username);
+    });
+  })(req, res, next);
+});
 
 router.route('/logout')
   .post((req, res) => {
@@ -56,8 +61,17 @@ router.route('/logout')
 router.route('/register')
   .post((req, res) => {
     const { username, password , name, email, address} = req.body;
+
     bcrypt.hash(password, SESSION.SALTROUNDS ).then(hashedPassword => {
-      Users.forge({ username , password: hashedPassword, name, email, address })
+      const payload = {
+        username: username,
+        password: hashedPassword,
+        name: name,
+        email: email,
+        address: address
+      }
+
+      Users.forge(payload)
         .save()
         .then(result => {
           if (result) {

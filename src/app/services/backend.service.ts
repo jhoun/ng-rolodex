@@ -5,16 +5,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendService {
-  url:string = 'http://localhost:4200';
+  url:string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
   register(data){
-    return Promise.resolve({})
+    return this.http.post(`${this.url}/api/register`, data).toPromise();
   }
 
   login(data){
-    return Promise.resolve({ username: data.username })
+    console.log('data', data);
+    return this.http.post(`${this.url}/api/login`, data).toPromise();
   }
 
   logout(){

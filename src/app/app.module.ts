@@ -12,11 +12,13 @@ import { CreateContactComponent } from './pages/create-contact/create-contact.co
 import { ViewAllContactsComponent } from './pages/view-all-contacts/view-all-contacts.component';
 import { ProfileViewComponent } from './pages/profile-view/profile-view.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 // Services
 import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { AuthService } from './services/auth.service';
     CreateContactComponent,
     ViewAllContactsComponent,
     ProfileViewComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AuthService } from './services/auth.service';
       { path: 'create', component: CreateContactComponent },
       { path: 'all', component: ViewAllContactsComponent },
       { path: 'profile', component: ProfileViewComponent },
-      { path: 'logout', component: LogoutComponent }
+      { path: 'logout', component: LogoutComponent },
+      { path: 'register', component: RegisterComponent }
     ])
   ],
   providers: [
