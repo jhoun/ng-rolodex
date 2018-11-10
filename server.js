@@ -10,21 +10,25 @@ const LocalStrategy = require('passport-local').Strategy;
 const Users = require('./db/models/Users.js');
 const bcrypt = require('bcrypt');
 const { SESSION } = require('./config.json')
+// var cors = require('cors')
 
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+// app.use(cors());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 app.use(
   session({
     store: new redisStore({ logErrors: true }),
     secret: SESSION.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      secure: true
-    }
+    resave: true,
+    saveUninitialized: false
   })
 )
 

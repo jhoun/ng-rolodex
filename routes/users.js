@@ -45,7 +45,7 @@ router.post('/login', function(req, res, next) {
     }
     if (!user) { return res.status(404).send(info.message); }
     req.logIn(user, function(err) {
-      console.log('hit_2')
+      console.log('hit_2');
       if (err) {
         return res.send(err);
       }
