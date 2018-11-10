@@ -41,6 +41,7 @@ passport.use(
           bcrypt
             .compare(password, user.attributes.password)
             .then(res => {
+              console.log('hit_1')
               if (res) {
                 return done(null, user);
               } else {
@@ -59,12 +60,12 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log('serialize', user.id);
+  console.log('serialize_hit')
   done(null, user.id);
 });
 
 passport.deserializeUser((user, done) => {
-  console.log('deserialize', user);
+  console.log('deserialize_hit')
   return Users.where({ user_id: user })
     .fetch()
     .then(user => {

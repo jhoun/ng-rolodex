@@ -45,6 +45,7 @@ router.post('/login', function(req, res, next) {
     }
     if (!user) { return res.status(404).send(info.message); }
     req.logIn(user, function(err) {
+      console.log('hit_2')
       if (err) {
         return res.send(err);
       }
@@ -71,7 +72,6 @@ router.route('/register')
         email: email,
         address: address
       }
-          console.log('req.user', req.user);
 
 
       Users.forge(payload)
