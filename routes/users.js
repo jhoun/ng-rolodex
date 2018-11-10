@@ -7,6 +7,7 @@ const { SESSION } = require('../config.json')
 
 router.route('/profile')
   .get((req, res) => {
+    console.log('req.user', req.user);
     Users
       .where(req.params)
       .fetchAll()
@@ -40,14 +41,14 @@ router.route('/users')
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
-      console.log('err.message', err.message);
+     res.send(err);
     }
+    if (!user) { return res.status(404).send(info.message); }
     req.logIn(user, function(err) {
-      console.log('req.user', req.isAuthenticated());
       if (err) {
-        console.log('err.message', err.message);
+        return res.send(err);
       }
-      return res.redirect('/users/' + user.username);
+      return res.send(user);
     });
   })(req, res, next);
 });
@@ -70,6 +71,8 @@ router.route('/register')
         email: email,
         address: address
       }
+          console.log('req.user', req.user);
+
 
       Users.forge(payload)
         .save()

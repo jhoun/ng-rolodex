@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       console.log('User logged In');
     })
     .catch((err) => {
-      console.log('err');
+      console.log(err);
     })
   }
 

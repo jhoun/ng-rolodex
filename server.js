@@ -21,7 +21,10 @@ app.use(
     store: new redisStore({ logErrors: true }),
     secret: SESSION.SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+      secure: true
+    }
   })
 )
 
@@ -39,18 +42,17 @@ passport.use(
             .compare(password, user.attributes.password)
             .then(res => {
               if (res) {
-                done(null, user);
+                return done(null, user);
               } else {
-                done(null, false);
+                return done(null, false, { message: 'Password Not Found' });
               }
             })
             .catch(err => {
-              console.log('err', err);
+              return done(err)
             });
         })
         .catch(err => {
-          console.log('err', err);
-          done(err);
+          return done(null, false, { message: 'No User Found' })
         });
     }
   )
