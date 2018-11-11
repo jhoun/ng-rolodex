@@ -18,26 +18,22 @@ app.use(bodyParser.json());
 
 const corsOptions = {
   credentials: true,
-  origin: [undefined, 'http://localhost:4200', 'http://localhost'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With']
+  origin: 'http://localhost:4200',
+  methods: ['POST'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
+  maxAge: 3600
 };
 
 app.use(cors(corsOptions));
-
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   // res.header("Access-Control-Allow-Credentials: true");
-//   next();
-// })
 
 app.use(
   session({
     store: new redisStore({ logErrors: true }),
     secret: SESSION.SECRET,
-    resave: true,
+    resave: false,
     cookie: {
-      secure: false
+      secure: false,
+      httpOnly: false
     },
     saveUninitialized: false
   })
@@ -79,7 +75,7 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log('serialize_hit')
+  console.log('serialize',user);
   done(null, user.id);
 });
 

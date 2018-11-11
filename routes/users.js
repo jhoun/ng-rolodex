@@ -50,7 +50,9 @@ router.post('/login', function(req, res, next) {
         return res.send(err);
       }
       req.session.user = "hello"
-      console.log('req.sessionInLOGIN', req.session);
+      // console.log('req.sessionInLOGIN', req.session);
+      console.log('req.user', req.user);
+      console.log('req.session.id_LOGIN', req.session.id);
       return res.send();
     });
   })(req, res, next);
@@ -58,7 +60,8 @@ router.post('/login', function(req, res, next) {
 
 router.route('/logout')
   .post((req, res) => {
-    console.log('req.session', req.session);
+    console.log('req.session.id_LOGOUT', req.session.id);
+
     req.session.destroy();
     return res.json('logged Out');
   })
