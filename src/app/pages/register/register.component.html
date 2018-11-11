@@ -11,8 +11,9 @@
 
     <input type="text" name="address" placeholder="address" [(ngModel)]="registerFormData.address" (keyup)="validateNewUserData('address')">
 
-    <button (click)="register()" class='btn' [disabled]="isDisabled()" >Submit</button>
-
-    {{ loginFormData | json}}
+    <button (click)="register()" class='btn' [disabled]="isDisabled()">Submit</button>
   </form>
+  <div class="back">
+    <a routerLink="/">Back to Login</a>
+  </div>
 </div>

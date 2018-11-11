@@ -6,9 +6,9 @@
     <input type="text" name="password" placeholder="password" [(ngModel)]="loginFormData.password" (keyup)="validatePassword()">
 
     <button (click)="login()" class='btn' [disabled]="isDisabled() ">Submit</button>
-
-    {{ loginFormData | json}}
   </form>
-  <a routerLink="/register"><button>Register</button></a>
+  <div class="register">
+    <section>Don't have an account?</section><a routerLink="/register">Sign Up Here</a>
+  </div>
 </div>
 
