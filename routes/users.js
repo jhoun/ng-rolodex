@@ -45,19 +45,22 @@ router.post('/login', function(req, res, next) {
     }
     if (!user) { return res.status(404).send(info.message); }
     req.logIn(user, function(err) {
-      console.log('hit_2');
+
       if (err) {
         return res.send(err);
       }
-      return res.send(user);
+      req.session.user = "hello"
+      console.log('req.sessionInLOGIN', req.session);
+      return res.send();
     });
   })(req, res, next);
 });
 
 router.route('/logout')
   .post((req, res) => {
+    console.log('req.session', req.session);
     req.session.destroy();
-    res.send('logged Out');
+    return res.json('logged Out');
   })
 
 router.route('/register')

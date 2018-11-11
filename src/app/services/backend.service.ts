@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpHeaders, HttpResponse, HttpErrorResponse, HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,27 @@ export class BackendService {
   }
 
   login(data){
-    return this.http.post(`${this.url}/api/login`, data).toPromise();
+
+    return this.http.post<HttpResponse<Object>>(
+              `${this.url}/api/login`,
+              data,
+              {
+                observe: 'response',
+                headers: new HttpHeaders().set('Content-Type', 'application/json'),
+                responseType: 'json',
+                withCredentials: true
+              }
+          ).toPromise()
+          // .subscribe(
+          //   (resp: HttpResponse<Object>) => {
+          //     console.log('Response: ' + JSON.stringify(resp));
+          // })
   }
 
   logout(){
-    return Promise.resolve({})
+    console.log('hit');
+    return this.http.post(`${this.url}/api/logout`, null).toPromise();
+    // return Promise.resolve({})
   }
 
 

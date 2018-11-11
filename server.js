@@ -10,30 +10,45 @@ const LocalStrategy = require('passport-local').Strategy;
 const Users = require('./db/models/Users.js');
 const bcrypt = require('bcrypt');
 const { SESSION } = require('./config.json')
-// var cors = require('cors')
+const cors = require('cors');
 
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// app.use(cors());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
+const corsOptions = {
+  credentials: true,
+  origin: [undefined, 'http://localhost:4200', 'http://localhost'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With']
+};
+
+app.use(cors(corsOptions));
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   // res.header("Access-Control-Allow-Credentials: true");
+//   next();
+// })
 
 app.use(
   session({
     store: new redisStore({ logErrors: true }),
     secret: SESSION.SECRET,
     resave: true,
+    cookie: {
+      secure: false
+    },
     saveUninitialized: false
   })
 )
 
+
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 passport.use(
   new LocalStrategy(
