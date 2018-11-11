@@ -1,9 +1,10 @@
 <div class="header-container">
   <div class="header-left">
-
+    ROLODEX
   </div>
 
   <div class="header-right">
+
     <div class="logged-in" *ngIf="isLoggedIn()">
       Welcome, {{ user.username }}
       <ul>
@@ -20,11 +21,10 @@
           <a routerLink="/profile">My Profile</a>
         </li>
         <li>
-          <a routerLink="/logout">Logout</a>
+          <a routerLink="/"><button (click)="logout()"> Log Out</button></a>
         </li>
       </ul>
-      <button (click)="logout()"> Log Out</button>
     </div>
+
   </div>
 </div>
-
