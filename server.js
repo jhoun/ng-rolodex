@@ -10,41 +10,23 @@ const LocalStrategy = require('passport-local').Strategy;
 const Users = require('./db/models/Users.js');
 const bcrypt = require('bcrypt');
 const { SESSION } = require('./config.json')
-const cors = require('cors');
 
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
-const corsOptions = {
-  credentials: true,
-  origin: 'http://localhost:4200',
-  methods: ['POST'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
-  maxAge: 3600
-};
-
-app.use(cors(corsOptions));
 
 app.use(
   session({
     store: new redisStore({ logErrors: true }),
     secret: SESSION.SECRET,
     resave: false,
-    cookie: {
-      secure: false,
-      httpOnly: false
-    },
-    saveUninitialized: false
+    cookie: { secure: false },
+    saveUninitialized: true
   })
 )
 
-
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 passport.use(
   new LocalStrategy(
@@ -56,7 +38,6 @@ passport.use(
           bcrypt
             .compare(password, user.attributes.password)
             .then(res => {
-              console.log('hit_1')
               if (res) {
                 return done(null, user);
               } else {
@@ -75,26 +56,21 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log('serialize',user);
   done(null, user.id);
 });
 
 passport.deserializeUser((user, done) => {
-  console.log('deserialize_hit')
   return Users.where({ user_id: user })
     .fetch()
     .then(user => {
       const userAttributes = {
         username: user.attributes.username,
-        YOOOOOO: user.attributes.name
       };
       done(null, userAttributes);
     });
 });
 
-
 app.use('/api', routes);
-
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);

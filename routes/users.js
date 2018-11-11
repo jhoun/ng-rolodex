@@ -45,14 +45,9 @@ router.post('/login', function(req, res, next) {
     }
     if (!user) { return res.status(404).send(info.message); }
     req.logIn(user, function(err) {
-
       if (err) {
         return res.send(err);
       }
-      req.session.user = "hello"
-      // console.log('req.sessionInLOGIN', req.session);
-      console.log('req.user', req.user);
-      console.log('req.session.id_LOGIN', req.session.id);
       return res.send();
     });
   })(req, res, next);
@@ -60,8 +55,6 @@ router.post('/login', function(req, res, next) {
 
 router.route('/logout')
   .post((req, res) => {
-    console.log('req.session.id_LOGOUT', req.session.id);
-
     req.session.destroy();
     return res.json('logged Out');
   })
@@ -69,29 +62,26 @@ router.route('/logout')
 router.route('/register')
   .post((req, res) => {
     const { username, password , name, email, address} = req.body;
+    bcrypt.hash(password, SESSION.SALTROUNDS )
+      .then(hashedPassword => {
+        const payload = {
+          username: username,
+          password: hashedPassword,
+          name: name,
+          email: email,
+          address: address
+        }
 
-    bcrypt.hash(password, SESSION.SALTROUNDS ).then(hashedPassword => {
-      const payload = {
-        username: username,
-        password: hashedPassword,
-        name: name,
-        email: email,
-        address: address
-      }
-
-
-      Users.forge(payload)
-        .save()
-        .then(result => {
-          if (result) {
-            res.redirect('./profile');
-          } else {
-            res.send('fail');
-          }
+        Users.forge(payload)
+          .save()
+          .then(result => {
+            if (result) {
+              res.redirect('./profile');
+            } else {
+              res.send('fail');
+            }
+          });
         });
-    });
   })
-
-
 
 module.exports = router;
