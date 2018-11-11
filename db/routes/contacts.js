@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const contacts = require('../db/models/Contacts.js')
+const contacts = require('../models/Contacts.js')
 
 router.route('/contacts')
   .get((req, res) => {

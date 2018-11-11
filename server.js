@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8080;
-const routes = require('./routes');
+const routes = require('./db/routes');
 const app = express();
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Users = require('../db/models/Users.js')
+const Users = require('../models/Users.js')
 const passport = require('passport');
 const bcrypt = require('bcrypt');
-const { SESSION } = require('../config.json')
+const { SESSION } = require('../../config.json')
 
 router.route('/profile')
   .get((req, res) => {
