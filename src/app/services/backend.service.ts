@@ -20,5 +20,9 @@ export class BackendService {
     return this.http.post('/api/logout', null).toPromise();
   }
 
+  create(data){
+    return this.http.post('/api/contacts', data).toPromise();
+  }
+
 
 }

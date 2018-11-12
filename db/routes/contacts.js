@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const contacts = require('../models/Contacts.js')
+const Contacts = require('../models/Contacts.js')
 
 router.route('/contacts')
   .get((req, res) => {
 
   })
   .post((req, res) => {
+    const payload = {...req.body, created_by: req.user.user_id};
 
+    Contacts
+      .forge(payload)
+      .save()
+      .then(result => {
+        res.send('success')
+      })
+      .catch( err =>  {
+        console.log('err', err);
+        res.send('error');
+      })
   })
 
 router.route('/contacts/:id')

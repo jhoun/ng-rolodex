@@ -1,3 +1,26 @@
-<p>
-  create-contact works!
-</p>
+<div class="new-contact-container">
+  <form>
+    <input type="text" name="fullname" placeholder="Full Name" [(ngModel)]="newContactFormData.fullName" (keyup)="validateNewUserData('fullName')">
+
+    <input type="text" name="address" placeholder="Address" [(ngModel)]="newContactFormData.address" (keyup)="validateNewUserData('address')">
+
+    <input type="text" name="mobile" placeholder="Mobile Number" [(ngModel)]="newContactFormData.mobile" (keyup)="validateNewUserData('mobile')">
+
+    <input type="text" name="work" placeholder="Work Number" [(ngModel)]="newContactFormData.work" (keyup)="validateNewUserData('work')">
+
+    <input type="text" name="home" placeholder="Home Number" [(ngModel)]="newContactFormData.home" (keyup)="validateNewUserData('home')">
+
+    <input type="text" name="email" placeholder="email" [(ngModel)]="newContactFormData.email" (keyup)="validateEmail()">
+
+    <input type="text" name="twitter" placeholder="Twitter" [(ngModel)]="newContactFormData.twitter" (keyup)="validateNewUserData('twitter')">
+
+    <input type="text" name="instagram" placeholder="Instagram" [(ngModel)]="newContactFormData.instagram" (keyup)="validateNewUserData('instagram')">
+
+    <input type="text" name="github" placeholder="Github" [(ngModel)]="newContactFormData.github" (keyup)="validateNewUserData('github')">
+
+    <button (click)="createContact()" class='btn' [disabled]="isDisabled()">Submit</button>
+  </form>
+  <div class="back">
+    <a routerLink="/">Back to Login</a>
+  </div>
+</div>

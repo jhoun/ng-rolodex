@@ -64,7 +64,7 @@ passport.deserializeUser((user, done) => {
     .fetch()
     .then(user => {
       const userAttributes = {
-        username: user.attributes.username,
+        user_id: user.attributes.user_id,
       };
       done(null, userAttributes);
     });
