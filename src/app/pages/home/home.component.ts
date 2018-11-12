@@ -1,65 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service'
-
+import { Router } from '@angular/router';
+import { SessionService } from '../../services/session.service';
 
 @Component({
-  selector: 'home-page',
+  selector: 'app-page',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-  loginFormData: {
-    username: string;
-    password: string;
-  } = {
-    username: '',
-    password: ''
-  };
 
-  validName: boolean = false;
-  validPassword: boolean = false;
-
-  constructor(private auth: AuthService) {}
-
-  login() {
-    this.auth.login(this.loginFormData)
-    .then(() => {
-      console.log('User logged In');
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+  constructor(
+    private session: SessionService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
   }
 
-  validateName() {
-    if (!this.loginFormData.username) {
-      this.validName = false;
-    }
-    else if (this.loginFormData.username.length < 3) {
-      this.validName = false;
-    }
-    else {
-      this.validName = true;
+  isLoggedIn(){
+    if(this.session.isLoggedIn()){
+      return true;
+    } else {
+      return this.router.navigate(['/login'])
     }
   }
 
-  validatePassword(){
-    if(!this.loginFormData.password){
-       this.validPassword = false;
-    }
-    else if (this.loginFormData.password.length < 3) {
-      this.validPassword = false;
-    }
-    else {
-      this.validPassword = true;
-    }
-  }
 
-  isDisabled(){
-    return !this.validName || !this.validPassword
-  }
 }

@@ -12,7 +12,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { CreateContactComponent } from './pages/create-contact/create-contact.component';
 import { ViewAllContactsComponent } from './pages/view-all-contacts/view-all-contacts.component';
 import { ProfileViewComponent } from './pages/profile-view/profile-view.component';
-import { LogoutComponent } from './pages/logout/logout.component';
+import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 // Services
@@ -29,7 +29,7 @@ import { AuthService } from './services/auth.service';
     CreateContactComponent,
     ViewAllContactsComponent,
     ProfileViewComponent,
-    LogoutComponent,
+    LoginComponent,
     RegisterComponent
   ],
   imports: [
@@ -38,10 +38,10 @@ import { AuthService } from './services/auth.service';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'create', component: CreateContactComponent },
       { path: 'all', component: ViewAllContactsComponent },
       { path: 'profile', component: ProfileViewComponent },
-      { path: 'logout', component: LogoutComponent },
       { path: 'register', component: RegisterComponent }
     ])
   ],

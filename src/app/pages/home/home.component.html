@@ -1,14 +1,7 @@
-
-<div class="login-container">
-  <form>
-    <input type="text" name="username" placeholder="username" [(ngModel)]="loginFormData.username" (keyup)="validateName()">
-
-    <input type="text" name="password" placeholder="password" [(ngModel)]="loginFormData.password" (keyup)="validatePassword()">
-
-    <button (click)="login()" class='btn' [disabled]="isDisabled() ">Submit</button>
-  </form>
-  <div class="register">
-    <section>Don't have an account?</section><a routerLink="/register">Sign Up Here</a>
+<div class="logged-in" *ngIf="isLoggedIn()">
+  <div>
+    Home component
   </div>
 </div>
+
 
