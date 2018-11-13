@@ -24,5 +24,9 @@ export class BackendService {
     return this.http.post('/api/contacts', data).toPromise();
   }
 
+  getAllContacts(){
+    return this.http.get('/api/contacts').toPromise();
+  }
+
 
 }

@@ -2,9 +2,20 @@ const express = require('express');
 const router = express.Router();
 const Contacts = require('../models/Contacts.js')
 
+
 router.route('/contacts')
   .get((req, res) => {
-
+   const {user_id} = req.user;
+   console.log('created_by', user_id);
+    Contacts
+      .where('created_by', user_id)
+      .fetchAll()
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err=> {
+        console.log('err', err);
+      })
   })
   .post((req, res) => {
     const payload = {...req.body, created_by: req.user.user_id};
@@ -15,7 +26,7 @@ router.route('/contacts')
       .then(result => {
         res.send({...result, hasCreated: true})
       })
-      .catch( err =>  {
+      .catch(err =>  {
         console.log('err', err);
         res.send('error');
       })

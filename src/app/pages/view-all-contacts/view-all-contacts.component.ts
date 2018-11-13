@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService} from '../../services/backend.service';
 
 @Component({
   selector: 'app-view-all-contacts',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAllContactsComponent implements OnInit {
 
-  constructor() { }
+  constructor( private backend: BackendService) {
+     this.backend.getAllContacts()
+    .then( result => {
+      console.log('result', result);
+    })
+  }
 
   ngOnInit() {
+
   }
 
 }
