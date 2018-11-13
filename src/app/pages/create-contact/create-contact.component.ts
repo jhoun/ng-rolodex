@@ -30,6 +30,28 @@ export class CreateContactComponent implements OnInit {
     github: ''
   }
 
+  newContactResult: {
+    fullName: string;
+    address: string;
+    mobile: string;
+    work: string;
+    home: string;
+    email: string;
+    twitter: string;
+    instagram: string;
+    github: string
+  } = {
+    fullName: '',
+    address: '',
+    mobile: '',
+    work: '',
+    home: '',
+    email: '',
+    twitter: '',
+    instagram: '',
+    github: ''
+  }
+
   validFullName: boolean = false;
   validAddress: boolean = false;
   validMobile: boolean = false;
@@ -44,11 +66,19 @@ export class CreateContactComponent implements OnInit {
 
   createContact() {
     this.backend.create(this.newContactFormData)
-    .then(() => {
-      console.log('User logged In');
+    .then(result => {
+       this.newContactResult.fullName = result["fullName"];
+       this.newContactResult.address = result["address"];
+       this.newContactResult.mobile = result["mobile"];
+       this.newContactResult.work = result["work"];
+       this.newContactResult.home = result["home"];
+       this.newContactResult.email = result["email"];
+       this.newContactResult.twitter = result["twitter"];
+       this.newContactResult.instagram = result["instagram"];
+       this.newContactResult.github = result["github"];
     })
     .catch((err) => {
-      console.log('err');
+      console.log('err', err);
     })
   }
 
