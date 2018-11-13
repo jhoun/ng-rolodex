@@ -39,7 +39,8 @@ export class CreateContactComponent implements OnInit {
     email: string;
     twitter: string;
     instagram: string;
-    github: string
+    github: string;
+    hasCreated: boolean;
   } = {
     fullName: '',
     address: '',
@@ -49,7 +50,8 @@ export class CreateContactComponent implements OnInit {
     email: '',
     twitter: '',
     instagram: '',
-    github: ''
+    github: '',
+    hasCreated: false
   }
 
   validFullName: boolean = false;
@@ -62,20 +64,21 @@ export class CreateContactComponent implements OnInit {
   validInstagram: boolean = false;
   validGithub: boolean = false;
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService) {}
 
   createContact() {
     this.backend.create(this.newContactFormData)
     .then(result => {
-       this.newContactResult.fullName = result["fullName"];
-       this.newContactResult.address = result["address"];
-       this.newContactResult.mobile = result["mobile"];
-       this.newContactResult.work = result["work"];
-       this.newContactResult.home = result["home"];
-       this.newContactResult.email = result["email"];
-       this.newContactResult.twitter = result["twitter"];
-       this.newContactResult.instagram = result["instagram"];
-       this.newContactResult.github = result["github"];
+       this.newContactResult.fullName = result["attributes"]["fullName"];
+       this.newContactResult.address = result["attributes"]["address"];
+       this.newContactResult.mobile = result["attributes"]["mobile"];
+       this.newContactResult.work = result["attributes"]["work"];
+       this.newContactResult.home = result["attributes"]["home"];
+       this.newContactResult.email = result["attributes"]["email"];
+       this.newContactResult.twitter = result["attributes"]["twitter"];
+       this.newContactResult.instagram = result["attributes"]["instagram"];
+       this.newContactResult.github = result["attributes"]["github"];
+       this.newContactResult.hasCreated = result["hasCreated"];
     })
     .catch((err) => {
       console.log('err', err);

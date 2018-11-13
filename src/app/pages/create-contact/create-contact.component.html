@@ -1,4 +1,4 @@
-<div class="new-contact-container">
+<div class="new-contact-container" *ngIf="!newContactResult.hasCreated">
   <form>
     <input type="text" name="fullname" placeholder="Full Name" [(ngModel)]="newContactFormData.fullName" (keyup)="validateNewUserData('fullName')">
 
@@ -25,12 +25,13 @@
   </div>
 </div>
 
-{{ newContactResult.fullName }}
-{{ newContactResult.address }}
-{{ newContactResult.mobile }}
-{{ newContactResult.work }}
-{{ newContactResult.home }}
-{{ newContactResult.email }}
-{{ newContactResult.twitter }}
-{{ newContactResult.instagram }}
-{{ newContactResult.github }}
+
+  {{ newContactResult.fullName }}
+  {{ newContactResult.address }}
+  {{ newContactResult.mobile }}
+  {{ newContactResult.work }}
+  {{ newContactResult.home }}
+  {{ newContactResult.email }}
+  {{ newContactResult.twitter }}
+  {{ newContactResult.instagram }}
+  {{ newContactResult.github }}

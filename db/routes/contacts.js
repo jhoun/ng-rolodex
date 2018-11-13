@@ -13,7 +13,7 @@ router.route('/contacts')
       .forge(payload)
       .save()
       .then(result => {
-        res.send(result)
+        res.send({...result, hasCreated: true})
       })
       .catch( err =>  {
         console.log('err', err);
